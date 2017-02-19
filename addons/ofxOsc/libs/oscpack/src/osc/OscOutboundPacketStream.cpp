@@ -435,11 +435,14 @@ OutboundPacketStream& OutboundPacketStream::operator<<( const MessageTerminator&
 
 OutboundPacketStream& OutboundPacketStream::operator<<( bool rhs )
 {
-    CheckForAvailableArgumentSpace(0);
+    // CheckForAvailableArgumentSpace(0);
+    //
+    // *(--typeTagsCurrent_) = (char)((rhs) ? TRUE_TYPE_TAG : FALSE_TYPE_TAG);
+    //
+    // return *this;
 
-    *(--typeTagsCurrent_) = (char)((rhs) ? TRUE_TYPE_TAG : FALSE_TYPE_TAG);
-
-    return *this;
+    // The Boolean argument type isn't part of the official OSC spec
+    return this->operator<<((int32)(rhs ? 1 : 0));
 }
 
 
