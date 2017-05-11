@@ -315,7 +315,7 @@ class ofBaseSoundOutput{
 	public:
 		/// \brief Destroy the ofBaseSoundOutput.
 		virtual ~ofBaseSoundOutput() {};
-	
+
 		/// \brief Output an audio buffer.
 		/// \param buffer An audio buffer.
 		virtual void audioOut( ofSoundBuffer& buffer );
@@ -453,7 +453,7 @@ public:
 	//needs implementing
 	virtual bool				load(string name) = 0;
 	virtual void				loadAsync(string name);
-	
+
 	virtual void				play() = 0;
 	virtual void				stop() = 0;
 	virtual ofTexture *			getTexturePtr(){return nullptr;}; // if your videoplayer needs to implement seperate texture and pixel returns for performance, implement this function to return a texture instead of a pixel array. see iPhoneVideoGrabber for reference
@@ -566,7 +566,7 @@ public:
 	virtual void multViewMatrix(const ofMatrix4x4 & m)=0;
 	virtual ofMatrix4x4 getCurrentViewMatrix() const=0;
 	virtual ofMatrix4x4 getCurrentNormalMatrix() const=0;
-	
+
 	// bind common objects that need perspective settings
 	virtual void bind(const ofCamera & camera, const ofRectangle & viewport)=0;
 	virtual void unbind(const ofCamera & camera)=0;

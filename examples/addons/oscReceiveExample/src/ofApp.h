@@ -35,6 +35,6 @@ class ofApp : public ofBaseApp {
 
 		int mouseX, mouseY;
 		string mouseButtonState;
-    
+
         ofImage receivedImage;
 };

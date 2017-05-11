@@ -3,7 +3,7 @@
 #include "ofThread.h"
 #include "ofImage.h"
 #include "ofURLFileLoader.h"
-#include "ofTypes.h" 
+#include "ofTypes.h"
 #include "ofThreadChannel.h"
 
 
@@ -23,13 +23,13 @@ private:
 	void update(ofEventArgs & a);
     virtual void threadedFunction();
 	void urlResponse(ofHttpResponse & response);
-    
+
     // Entry to load.
     struct ofImageLoaderEntry {
         ofImageLoaderEntry() {
             image = NULL;
         }
-        
+
         ofImageLoaderEntry(ofImage & pImage) {
             image = &pImage;
         }
@@ -49,5 +49,3 @@ private:
 	ofThreadChannel<ofImageLoaderEntry> images_to_load_from_disk;
 	ofThreadChannel<ofImageLoaderEntry> images_to_update;
 };
-
-

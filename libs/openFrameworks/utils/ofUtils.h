@@ -388,7 +388,7 @@ string ofJoinString(const vector<string>& stringElements, const string& delimite
 void ofStringReplace(string& input, const string& searchStr, const string& replaceStr);
 
 /// \brief Check if string contains another string.
-/// 
+///
 /// Example:
 /// ~~~{.cpp}
 ///     std::string haystack = "foobar";
@@ -897,7 +897,7 @@ void ofLaunchBrowser(const string& url, bool uriEncodeQuery=false);
 
 /// \brief Executes a system command. Similar to run a command in terminal.
 /// \note Will block until the executed program/command has finished.
-/// \returns the system command output as string. 
+/// \returns the system command output as string.
 string ofSystem(const string& command);
 
 /// \brief Get the target platform of the current system.

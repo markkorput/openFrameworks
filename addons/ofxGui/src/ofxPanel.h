@@ -25,7 +25,7 @@ protected:
 private:
 	ofRectangle loadBox, saveBox;
 	static ofImage loadIcon, saveIcon;
-    
+
     ofPoint grabPt;
 	bool bGrabbed;
 };

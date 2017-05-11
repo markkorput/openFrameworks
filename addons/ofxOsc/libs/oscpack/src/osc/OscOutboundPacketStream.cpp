@@ -25,12 +25,12 @@
 */
 
 /*
-	The text above constitutes the entire oscpack license; however, 
+	The text above constitutes the entire oscpack license; however,
 	the oscpack developer(s) also make the following non-binding requests:
 
 	Any person wishing to distribute modifications to the Software is
 	requested to send the modifications to the original developer so that
-	they can be incorporated into the canonical version. It is also 
+	they can be incorporated into the canonical version. It is also
 	requested that these non-binding requests be included whenever the
 	above license is reproduced.
 */
@@ -146,7 +146,7 @@ static void FromUInt64( char *p, uint64 x )
 
 
 // round up to the next highest multiple of 4. unless x is already a multiple of 4
-static inline std::size_t RoundUp4( std::size_t x ) 
+static inline std::size_t RoundUp4( std::size_t x )
 {
     return (x + 3) & ~((std::size_t)0x03);
 }
@@ -161,7 +161,7 @@ OutboundPacketStream::OutboundPacketStream( char *buffer, std::size_t capacity )
     , elementSizePtr_( 0 )
     , messageIsInProgress_( false )
 {
-    // sanity check integer types declared in OscTypes.h 
+    // sanity check integer types declared in OscTypes.h
     // you'll need to fix OscTypes.h if any of these asserts fail
     assert( sizeof(osc::int32) == 4 );
     assert( sizeof(osc::uint32) == 4 );
@@ -647,7 +647,7 @@ OutboundPacketStream& OutboundPacketStream::operator<<( const Blob& rhs )
     *(--typeTagsCurrent_) = BLOB_TYPE_TAG;
     FromUInt32( argumentCurrent_, rhs.size );
     argumentCurrent_ += 4;
-    
+
     std::memcpy( argumentCurrent_, rhs.data, rhs.size );
     argumentCurrent_ += rhs.size;
 
@@ -682,5 +682,3 @@ OutboundPacketStream& OutboundPacketStream::operator<<( const ArrayTerminator& r
 }
 
 } // namespace osc
-
-
