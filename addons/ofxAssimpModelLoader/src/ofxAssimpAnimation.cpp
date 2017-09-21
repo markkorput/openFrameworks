@@ -8,7 +8,6 @@
 ofxAssimpAnimation::ofxAssimpAnimation(shared_ptr<const aiScene> scene, aiAnimation * animation) {
     this->scene = scene;
     this->animation = animation;
-    animationCurrTime = 0;
     animationPrevTime = 0;
     bPlay = false;
     bPause = false;
@@ -35,17 +34,18 @@ aiAnimation * ofxAssimpAnimation::getAnimation() {
 }
 
 void ofxAssimpAnimation::update() {
+    float animationCurrTime = ofGetElapsedTimef();
+    this->update(animationCurrTime-animationPrevTime);
     animationPrevTime = animationCurrTime;
-    animationCurrTime = ofGetElapsedTimef();
-    double tps = animation->mTicksPerSecond ? animation->mTicksPerSecond : 25.f;
-    animationCurrTime *= tps;
-    
+}
+
+void ofxAssimpAnimation::update(float timeStep) {
     if(!bPlay || bPause) {
         return;
     }
-    
+
+    double tps = animation->mTicksPerSecond ? animation->mTicksPerSecond : 25.f;
     float duration = getDurationInSeconds();
-    float timeStep = animationCurrTime - animationPrevTime;
     float positionStep = timeStep / (float)duration;
     float position = getPosition() + positionStep;
     

@@ -35,10 +35,12 @@ class ofxAssimpModelLoader{
         void optimizeScene();
 
         void update();
-    
+        void update(float dt);
+
         bool hasAnimations();
         unsigned int getAnimationCount();
         ofxAssimpAnimation & getAnimation(int animationIndex);
+        float getTotalAnimationsDurationInSeconds();
         void playAllAnimations();
         void stopAllAnimations();
         void resetAllAnimations();
@@ -114,6 +116,7 @@ class ofxAssimpModelLoader{
          
     protected:
         void updateAnimations();
+        void updateAnimations(float dt);
         void updateMeshes(aiNode * node, ofMatrix4x4 parentMatrix);
         void updateBones();
         void updateModelMatrix();

@@ -21,6 +21,7 @@ public:
     aiAnimation * getAnimation();
     
     void update();
+    void update(float timeStep);
     
     void play();
     void stop();

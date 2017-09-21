@@ -385,9 +385,26 @@ void ofxAssimpModelLoader::update() {
     updateGLResources();
 }
 
+void ofxAssimpModelLoader::update(float dt) {
+    if(!scene) return;
+    updateAnimations(dt);
+    updateMeshes(scene->mRootNode, ofMatrix4x4());
+    if(hasAnimations() == false) {
+        return;
+    }
+    updateBones();
+    updateGLResources();
+}
+
 void ofxAssimpModelLoader::updateAnimations() {
     for(unsigned int i=0; i<animations.size(); i++) {
         animations[i].update();
+    }
+}
+
+void ofxAssimpModelLoader::updateAnimations(float dt) {
+    for(unsigned int i=0; i<animations.size(); i++) {
+        animations[i].update(dt);
     }
 }
 
@@ -516,6 +533,16 @@ unsigned int ofxAssimpModelLoader::getAnimationCount(){
 ofxAssimpAnimation & ofxAssimpModelLoader::getAnimation(int animationIndex) {
     animationIndex = ofClamp(animationIndex, 0, animations.size()-1);
     return animations[animationIndex];
+}
+
+float ofxAssimpModelLoader::getTotalAnimationsDurationInSeconds(){
+    float max = 0.0f;
+
+    for(auto& anim : this->animations){
+        max = std::max(max, anim.getDurationInSeconds());
+    }
+                       
+    return max;
 }
 
 void ofxAssimpModelLoader::playAllAnimations() {
