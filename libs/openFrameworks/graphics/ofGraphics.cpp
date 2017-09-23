@@ -54,16 +54,16 @@ static void ofEndSaveScreen(){
 
 static void ofBeginSaveScreen(string filename, ofCairoRenderer::Type type, bool bMultipage, bool b3D, ofRectangle outputsize){
 	if( bScreenShotStarted ) ofEndSaveScreen();
-	
+
 	storedRenderer = ofGetCurrentRenderer();
-	
+
 	cairoScreenshot = shared_ptr<ofCairoRenderer>(new ofCairoRenderer);
 	cairoScreenshot->setup(filename, type, bMultipage, b3D, outputsize);
 
 	rendererCollection = shared_ptr<ofRendererCollection>(new ofRendererCollection);
 	rendererCollection->renderers.push_back(storedRenderer);
 	rendererCollection->renderers.push_back(cairoScreenshot);
-	
+
 	ofSetCurrentRenderer(rendererCollection, true);
 	cairoScreenshot->background(cairoScreenshot->getStyle().bgColor);
 	bScreenShotStarted = true;
@@ -245,8 +245,8 @@ void ofScale(float xAmnt, float yAmnt, float zAmnt){
 }
 
 
-void ofScale(const ofPoint & p) { 
-	ofScale(p.x, p.y, p.z); 
+void ofScale(const ofPoint & p) {
+	ofScale(p.x, p.y, p.z);
 }
 //----------------------------------------------------------
 void ofRotate(float degrees, float vecX, float vecY, float vecZ){
@@ -341,7 +341,7 @@ void ofClear(const ofColor & c){
 //----------------------------------------------------------
 void ofClearAlpha(){
 	ofGetCurrentRenderer()->clearAlpha();
-}	
+}
 
 //----------------------------------------------------------
 void ofSetBackgroundAuto(bool bAuto){
@@ -1112,28 +1112,28 @@ void ofDrawBitmapStringHighlight(string text, int x, int y, const ofColor& backg
 		}
 		maxLineLength = MAX(maxLineLength, currentLineLength);
 	}
-	
+
 	int padding = 4;
 	int fontSize = 8;
 	float leading = 1.7;
 	int height = lines.size() * fontSize * leading - 1;
 	int width = maxLineLength * fontSize;
-	
+
 	ofPushStyle();
 	glDepthMask(false);
 	ofSetColor(background);
 	ofFill();
 	ofPushMatrix();
-	
+
 	if(ofGetStyle().drawBitmapMode == OF_BITMAPMODE_MODEL) {
 		ofTranslate(x,y,0);
 		ofScale(1,-1,0);
 		ofTranslate(-(padding), + padding - fontSize - 2,0);
 	} else {
 		ofTranslate(x-(padding), y-(padding + fontSize + 2), 0);
-		
+
 	}
-	
+
 	ofDrawRectangle(0, 0, width + 2 * padding, height + 2 * padding);
 	ofPopMatrix();
 	ofSetColor(foreground);

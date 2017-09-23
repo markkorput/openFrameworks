@@ -7,7 +7,7 @@ void ofApp::setup(){
 
 	// open an outgoing connection to HOST:PORT
 	sender.setup(HOST, PORT);
-    
+
     imgAsBuffer = ofBufferFromFile("of-logo.png", true);
 
 }
@@ -19,12 +19,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
+
     if(img.getWidth() > 0){
         ofDrawBitmapString("Image:", 10, 160);
         img.draw(10, 180);
     }
-    
+
 	// display instructions
 	string buf;
 	buf = "sending osc messages to" + string(HOST) + ofToString(PORT);
@@ -47,7 +47,7 @@ void ofApp::keyPressed(int key){
 		m.addFloatArg(ofGetElapsedTimef());
 		sender.sendMessage(m, false);
 	}
-    
+
     //send an image. (Note: the size of the image depends greatly on your network buffer sizes - if an image is too big the message won't come through )
 
     if( key == 'i' || key == 'I'){
@@ -96,7 +96,6 @@ void ofApp::mouseReleased(int x, int y, int button){
 	m.addIntArg(button);
 	m.addStringArg("up");
 	sender.sendMessage(m, false);
-
 }
 
 //--------------------------------------------------------------
@@ -121,6 +120,5 @@ void ofApp::gotMessage(ofMessage msg){
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
-    
-}
 
+}

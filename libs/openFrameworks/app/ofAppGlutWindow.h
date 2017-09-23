@@ -28,15 +28,15 @@ public:
 	void update();
 	void draw();
 	void close();
-	
-	void setDoubleBuffering(bool _bDoubleBuffered); 
-	
+
+	void setDoubleBuffering(bool _bDoubleBuffered);
+
 	//note if you fail to set a compatible string the app will not launch
 	void setGlutDisplayString(string str);
 
 	void hideCursor();
 	void showCursor();
-	
+
 	void setFullscreen(bool fullScreen);
 	void toggleFullscreen();
 
@@ -47,13 +47,13 @@ public:
 	ofPoint		getWindowPosition();
 	ofPoint		getWindowSize();
 	ofPoint		getScreenSize();
-	
+
 	void			setOrientation(ofOrientation orientation);
 	ofOrientation	getOrientation();
-	
+
 	int			getWidth();
-	int			getHeight();	
-	
+	int			getHeight();
+
 	ofWindowMode	getWindowMode();
 
 	void		enableSetupScreen();
@@ -85,9 +85,8 @@ private:
 	void setWindowIcon(const string & path);
 	void setWindowIcon(const ofPixels & iconPixels);
 #endif
-	
+
 	ofCoreEvents coreEvents;
 	shared_ptr<ofBaseRenderer> currentRenderer;
 	int windowId;
 };
-

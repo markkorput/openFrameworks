@@ -206,7 +206,7 @@ void ofCoreEvents::notifyDraw(){
 	if (bFrameRateSet){
 		timer.waitNext();
 	}
-	
+
 	if(fps.getNumFrames()==0){
 		if(bFrameRateSet) fps = ofFpsCounter(targetRate);
 	}else{
@@ -218,7 +218,7 @@ void ofCoreEvents::notifyDraw(){
 		}*/
 	}
 	fps.newFrame();
-	
+
 }
 
 //------------------------------------------
@@ -245,7 +245,7 @@ void ofCoreEvents::notifyKeyPressed(int key, int keycode, int scancode, int code
         ofKeyEventArgs keyEventArgs(ofKeyEventArgs::Pressed,OF_KEY_SUPER);
         ofNotifyEvent( keyPressed, keyEventArgs );
     }
-            
+
 	pressedKeys.insert(key);
     ofKeyEventArgs keyEventArgs(ofKeyEventArgs::Pressed,key,keycode,scancode,codepoint);
 	ofNotifyEvent( keyPressed, keyEventArgs );
@@ -275,7 +275,7 @@ void ofCoreEvents::notifyKeyReleased(int key, int keycode, int scancode, int cod
         ofKeyEventArgs keyEventArgs(ofKeyEventArgs::Released,OF_KEY_SUPER);
     	ofNotifyEvent( keyReleased, keyEventArgs );
     }
-    
+
 	pressedKeys.erase(key);
     ofKeyEventArgs keyEventArgs(ofKeyEventArgs::Released,key,keycode,scancode,codepoint);
 	ofNotifyEvent( keyReleased, keyEventArgs );
@@ -291,7 +291,7 @@ void ofCoreEvents::notifyKeyEvent(const ofKeyEventArgs & keyEvent){
 		case ofKeyEventArgs::Released:
 			notifyKeyReleased(keyEvent.key);
 			break;
-		
+
 	}
 }
 
@@ -332,7 +332,7 @@ void ofCoreEvents::notifyMousePressed(int x, int y, int button){
 		previousMouseX = currentMouseX;
 		previousMouseY = currentMouseY;
 	}
-    
+
 	currentMouseX = x;
 	currentMouseY = y;
 	pressedMouseButtons.insert(button);

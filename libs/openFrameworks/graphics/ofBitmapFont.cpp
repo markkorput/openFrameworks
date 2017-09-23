@@ -33,7 +33,7 @@
  *
  * Copyright (c) 1999-2000 by Pawel W. Olszta
  * Written by Pawel W. Olszta, <olszta@sourceforge.net>
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
@@ -346,10 +346,10 @@ void ofBitmapFont::init(){
 	}
 
 }
-		
+
 //---------------------------------------------------------------------
 static void addBitmapCharacter(ofMesh & charMesh, int & vertexCount, int character, int x , int y, bool vFlipped){
-	if (character < 128) {		
+	if (character < 128) {
 
 		float posTexW = (float)(character % 16)/16.0f;
 		float posTexH = ((int)(character / 16.0f))/16.0f;
@@ -387,7 +387,7 @@ static void addBitmapCharacter(ofMesh & charMesh, int & vertexCount, int charact
 		charMesh.getVertices()[vC+5].set(x,y);
 
 		vertexCount += 6;
-	}	
+	}
 }
 
 ofMesh ofBitmapFont::getMesh(const string & text, int x, int y, ofDrawBitmapMode mode, bool vFlipped) const{

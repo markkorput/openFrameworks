@@ -1046,7 +1046,7 @@ public:
     /// \param rect The rectangle to compare.
     /// \returns True if the rectangles are not equal.
     bool operator != (const ofRectangle& rect) const;
-    
+
     bool isZero() const;
 
 

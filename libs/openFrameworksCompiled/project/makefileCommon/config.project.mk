@@ -182,7 +182,7 @@ ifdef B_PROCESS_ADDONS
     INVALID_GLOBAL_ADDONS = $(filter-out $(VALID_PROJECT_ADDONS),$(REQUESTED_PROJECT_ADDONS))
 
 	INVALID_PROJECT_ADDONS = $(filter-out $(INVALID_GLOBAL_ADDONS), $(wildcard $(INVALID_GLOBAL_ADDONS)))
-	
+
     # if any invalid addons are found, throw a warning, but don't cause an error
     ifneq ($(INVALID_PROJECT_ADDONS),)
         $(warning The following unknown addons will be ignored:)
@@ -207,7 +207,7 @@ ifdef B_PROCESS_ADDONS
     ifneq ($(PROJECT_ADDONS),)
 		include $(OF_SHARED_MAKEFILES_PATH)/config.addons.mk
     endif
-        
+
     ifdef ADDON_PATHS
     	PROJECT_ADDON_PATHS = $(addsuffix /,$(call remove-dupes-func,$(ADDON_PATHS:%/=%)))
     endif
@@ -328,6 +328,10 @@ OF_PROJECT_LIBS += $(PROJECT_ADDONS_LIBS)
 
 OF_PROJECT_DEFINES := $(PROJECT_DEFINES)
 OF_PROJECT_DEFINES += $(PROJECT_ADDONS_DEFINES)
+
+ifeq ($(findstring Debug,$(MAKECMDGOALS)),Debug)
+	OF_PROJECT_DEFINES += $(PROJECT_DEFINES_DEBUG)
+endif
 
 OF_PROJECT_DEFINES_CFLAGS = $(addprefix -D,$(OF_PROJECT_DEFINES))
 

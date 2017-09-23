@@ -12,17 +12,17 @@
 class ofxAssimpTexture {
 
 public:
-    
+
     ofxAssimpTexture();
     ofxAssimpTexture(ofTexture texture, string texturePath);
 
     ofTexture & getTextureRef();
     string getTexturePath();
     bool hasTexture();
-    
+
 private:
-    
+
     ofTexture texture;
     string texturePath;
-    
+
 };

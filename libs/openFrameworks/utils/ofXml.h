@@ -28,9 +28,9 @@
 #include <Poco/DOM/ChildNodesList.h>
 
 class ofXml: public ofBaseFileSerializer {
-    
+
 public:
-    
+
     ofXml();
     ~ofXml();
 
@@ -56,7 +56,7 @@ public:
     bool			getBoolValue(const string & path) const;
 
     bool            setValue(const string& path, const string& value);
-    
+
     string          getAttribute(const string& path) const;
     bool            setAttribute(const string& path, const string& value);
     map<string, string> getAttributes() const;
@@ -74,7 +74,7 @@ public:
     						  // if the current element is the document root this will act as clear()
 
     bool            exists(const string& path) const; // works for both attributes and tags
-    
+
     void			clear();  // clears the full document and points the current element to the root
 
     string          getName() const;
@@ -86,11 +86,11 @@ public:
     bool            setToParent(int numLevelsUp);
     bool            setToSibling();
     bool            setToPrevSibling();
-    
+
     bool            loadFromBuffer( const string& buffer );
-    
+
     string          toString() const;
-    
+
     // serializer
 	void serialize(const ofAbstractParameter & parameter);
 	void deserialize(ofAbstractParameter & parameter);
@@ -98,7 +98,7 @@ public:
     //////////////////////////////////////////////////////////////////
     // please excuse our mess: templated get/set
     //////////////////////////////////////////////////////////////////
-    
+
     // a pretty useful tokenization system:
     static vector<string> tokenize(const string & str, const string & delim){
         vector<string> tokens;
@@ -114,12 +114,12 @@ public:
         }
         return tokens;
     }
-    
+
     // templated to be anything
     template <class T> bool addValue(const string& path, T data=T(), bool createEntirePath = false){
         string value = ofToString(data);
         vector<string> tokens;
-        
+
         if(path.find('/') != string::npos){
             tokens = tokenize(path, "/");
         }
@@ -135,7 +135,7 @@ public:
             if(!firstElement){
                 firstElement = lastElement;
             }
-            
+
 			for(std::size_t i = 0; i < tokens.size(); i++){
                 Poco::XML::Element* newElement = getPocoDocument()->createElement(tokens.at(i));
 
@@ -147,7 +147,7 @@ public:
 
                 lastElement = newElement;
             }
-            
+
             if(value != ""){
                 Poco::XML::Text *text = getPocoDocument()->createTextNode(value);
                 try {
@@ -162,9 +162,9 @@ public:
                 element = firstElement;
                 document->appendChild(element);
             }
-            
+
             return true;
-            
+
         }else{
             Poco::XML::Element *newElement = getPocoDocument()->createElement(path);
 
@@ -173,13 +173,13 @@ public:
                 try {
                     newElement->appendChild(text);
                     text->release();
-                    
+
                 } catch ( Poco::XML::DOMException &e ){
                     ofLogError("ofxXml") << "addValue(): couldn't set node value: " << DOMErrorMessage(e.code());
                     return false;
                 }
             }
-            
+
             if(element){
                 element->appendChild(newElement);
             }else{
@@ -189,7 +189,7 @@ public:
         return true;
     }
 
-    
+
     // templated to be anything
     template <class T> T getValue(const string& path, T returnVal=T()) const{
     	if(element){
@@ -210,9 +210,9 @@ public:
 
         return T();
     }
-    
+
     // these are advanced, you probably don't want to use them
-    
+
     Poco::XML::Element*        getPocoElement();
     Poco::XML::Element*        getPocoElement(const string& path);
     const Poco::XML::Element*  getPocoElement() const;
